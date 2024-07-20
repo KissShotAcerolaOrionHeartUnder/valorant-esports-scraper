@@ -24,16 +24,32 @@ const get = async() => {
 const getById = async(id) => {
   const playerPage = await request.get(`https://www.vlr.gg/player/${id}`)
   const $ = cheerio.load(playerPage)
-  const avatar = $('.player-header').find('.wf-avatar').find('img').attr('src')
+  const avatar = 'https:' + $('.player-header').find('.wf-avatar').find('img').attr('src')
   const user = $('.player-header').find('.wf-title').text().trim()
   const realName = $('.player-header').find('.player-real-name').text()
   const currentTeam = $('.wf-module-item').find('div').find('div').first().text().trim()
   const pastTeams = []
-  $('wf-module-item').eq(1).parent().find('a').each((index, element) => {
+  $('.wf-module-item').eq(1).parent().find('a').map((index, element) => {
     pastTeams.push({
       id: $(element).attr('href').split('/')[2],
       url: 'https://vlr.gg' + $(element).attr('href'),
-      name: $(element).find('div').children()
+      name: $(element).find('div').children().text().replace(/\t/g, '').trim().split('\n')[0].trim()
+    })
+  })
+  let lastResults = []
+  $('.wf-card.fc-flex.m-item').each((index, element) => {
+    lastResults.push({
+      id: $(element).attr('href').split('/')[1],
+      teams: [
+        {
+          name: $(element).find('.m-item-team-name').eq(0).text().trim(),
+          score: $(element).find('.m-item-result').find('span').text().split('')[0]
+        },
+        {
+          name: $(element).find('.m-item-team-name').eq(1).text().trim(),
+          score: $(element).find('.m-item-result').find('span').text().split('')[1]
+        }
+      ]
     })
   })
 
@@ -46,7 +62,8 @@ const getById = async(id) => {
       flag: $('.player-header').find('.flag').attr('class').split(' ')[1].replace('mod-', '')
     },
     currentTeam,
-    pastTeams
+    pastTeams,
+    lastResults
   }
 }
 export default { get, getById }
