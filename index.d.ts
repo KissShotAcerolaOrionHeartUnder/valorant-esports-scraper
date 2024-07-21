@@ -91,7 +91,7 @@ type TeamData = {
   roster: TeamRoster
   lastResults: PlayerLastResult[]
 }
-declare module 'index' {
+declare module 'vlresports-scraper' {
   export namespace events {
     async function get(): Promise<EventsData>
   }
