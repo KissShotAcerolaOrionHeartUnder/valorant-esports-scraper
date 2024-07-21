@@ -2,11 +2,11 @@
 This repository is a web scraping from [vlr.gg](https://www.vlr.gg/) to fetch players, matches, events, results and teams data
 # Installation
 ```
-npm i https://github.com/levispires/valorant-esports-api
+npm i https://github.com/levispires/valorant-esports-scraper
 ```
 # Examples
 ```js
-import { matches, results, players, teams, events } from 'vlresports-api'
+import { matches, results, players, teams, events } from 'vlresports-scraper'
 
 console.log(await matches.get()) // get all matches
 console.log(await results.get()) // get all results

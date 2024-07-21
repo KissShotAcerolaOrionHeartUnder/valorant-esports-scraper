@@ -1,5 +1,5 @@
 {
-  "name": "vlresports-api",
+  "name": "vlresports-scraper",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
