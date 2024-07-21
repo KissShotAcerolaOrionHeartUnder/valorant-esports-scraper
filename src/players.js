@@ -49,7 +49,8 @@ const getById = async(id) => {
           name: $(element).find('.m-item-team-name').eq(1).text().trim(),
           score: $(element).find('.m-item-result').find('span').text().split('')[1]
         }
-      ]
+      ],
+      url: 'https://vlr.gg' + $(element).attr('href')
     })
   })
 
