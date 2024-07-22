@@ -93,20 +93,20 @@ type TeamData = {
 }
 declare module 'vlresports-scraper' {
   export namespace events {
-    async function get(): Promise<EventsData[]>
+    function get(): Promise<EventsData[]>
   }
   export namespace matches {
-    async function get(): Promise<MatchesData[]>
+    function get(): Promise<MatchesData[]>
   }
   export namespace players {
-    async function get(): Promise<PlayersData[]>
-    async function getById(id: string): Promise<PlayerData>
+    function get(): Promise<PlayersData[]>
+    function getById(id: string): Promise<PlayerData>
   }
   export namespace results {
-    async function get(): Promise<ResultsData[]>
+    function get(): Promise<ResultsData[]>
   }
   export namespace teams {
-    async function get(): Promise<TeamsData[]>
-    async function getById(id: string): Promise<TeamData>
+    function get(): Promise<TeamsData[]>
+    function getById(id: string): Promise<TeamData>
   }
 }
